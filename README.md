@@ -40,10 +40,13 @@ The WGM02 bit is located in the TCCR0B register.
 | 5        | 1         | 0         | 1         | PWM, Phase Correct                 | OCR0A    | TOP                   | BOTTOM              |
 | 6        | 1         | 1         | 0         | Reserved                           | -        | -                     | -                   |
 | 7        | 1         | 1         | 1         | Fast PWM                            | OCR0A    | BOTTOM                | TOP                 |
-
-> [!NOTE]
-* **MAX** = 0xFF
+ 
+* **MAX** = 0xFF   
 * **BOTTOM** = 0x00
+
+> [!CAUTION]
+Pay close attention to the Update of OCRx at column. This is crucial for accurate timer operation, and failing to consider it could cause timing issues or unexpected behavior in your application.
+
 
 ### Explanation:
 - **Normal Mode**: The timer counts from 0 to 255, and the overflow flag is set when it reaches 255.
