@@ -17,12 +17,6 @@
 /**
  * @brief Interrupt Service Routine for Timer0 Overflow
  * 
- * This ISR is called when Timer0 overflows, which occurs when the timer reaches its maximum value. 
- * The interrupt service routine resets the timer to the predefined value (`Timer0_intValue`) to create 
- * periodic overflows.
- * 
- * @note The Timer0 overflow interrupt is enabled in the `Timer0_Init` function.
- * 
  * @note **Important**: For the interrupt to work, `globalInt_Enable` must be called to enable global interrupts. 
  *       Alternatively, you can set the I-bit (Interrupt Enable) in the `SREG` (Status Register) manually by writing `1` to the I-bit.
  */
@@ -57,7 +51,7 @@ void Timer0_Init(bool _initStatus)
         bitClear(TCCR0A, COM0B1);
 
         GPIO_Config_OUTPUT(OC0A_Config, OC0A_Pin);  /**< Set pin PD6 (OC0A) as output */
-        GPIO_Config_OUTPUT(OC0B_Config, OC0B_Pin);  /**< Set pin PD6 (OC0B) as output */
+        GPIO_Config_OUTPUT(OC0B_Config, OC0B_Pin);  /**< Set pin PD5 (OC0B) as output */
 
         /* Set Prescaler = 64 for a timer frequency of 250 KHz (assuming a 16 MHz system clock) */
         bitSet  (TCCR0B, CS00);
