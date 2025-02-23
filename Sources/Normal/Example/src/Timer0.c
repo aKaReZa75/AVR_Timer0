@@ -66,6 +66,8 @@ void Timer0_Init(bool _initStatus)
 
         bitSet  (TIMSK0, TOIE0);  /**< Enable Timer0 overflow interrupt */
 
+        intFlag_clear(TIFR0, TOIE0); /**< Clear Timer0 overflow interrupt flag */
+
         OCR0B = 249;
         TCNT0 = Timer0_intValue;  /**< Initialize the Timer0 counter to the predefined value */
     }
