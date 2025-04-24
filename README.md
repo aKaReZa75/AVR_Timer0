@@ -446,15 +446,30 @@ int main(void)
 
 # 🔗 Resources
   Here you'll find a collection of useful links and videos related to the topic of AVR microcontrollers.  
+
+<table style="border-collapse: collapse;">
+  <tr>
+    <td valign="top" style="padding: 0 10px;">
+      <h3 style="margin: 0;">
+        <a href="https://youtu.be/J1_z-FngLbA">aKaReZa 59 – AVR, Timer, Accurate Time, Mode 1</a>
+      </h3>
+      <p style="margin: 8px 0 0;">
+        Learn about Timer-Counter 0 in AVR microcontrollers, Normal and CTC modes, Overflow and Compare Match interrupts, precise timing, function execution time calculation, and 7-segment display integration.
+      </p>
+    </td>
+    <td width="360" valign="top" style="padding: 0;">
+      <a href="https://youtu.be/J1_z-FngLbA">
+        <img src="https://img.youtube.com/vi/J1_z-FngLbA/maxresdefault.jpg"
+             width="360"
+             alt="aKaReZa 59 – AVR, Timer, Accurate Time, Mode 1 Thumbnail"/>
+      </a>
+    </td>
+  </tr>
+</table>
   
 > [!TIP]
 > The resources are detailed in the sections below.  
 > To access any of them, simply click on the corresponding blue link.
-
-- [aKaReZa 59 - AVR, Timer, Accurate Time, Mode 1](https://youtu.be/J1_z-FngLbA)  
-  ---  
-    Learn about Timer-Counter 0 in AVR microcontrollers, Normal and CTC modes, Overflow and Compare Match interrupts, precise timing, function execution time calculation, and 7-segment display integration.
-
 
 - [AVR Microntroller](https://github.com/aKaReZa75/AVR)
   ---  
