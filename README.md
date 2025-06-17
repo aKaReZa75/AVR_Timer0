@@ -33,11 +33,11 @@ Timer/Counter 0 is one of the timers integrated into the ATmega328 microcontroll
   </tr>  
 </table>
 
-## Registers
+# Registers
 
 Here is a list of the relevant registers for Timer/Counter 0, along with detailed descriptions of each bit:
 
-### **TCCR0A (Timer/Counter Control Register A)**
+## **TCCR0A (Timer/Counter Control Register A)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -50,7 +50,7 @@ Here is a list of the relevant registers for Timer/Counter 0, along with detaile
 | 1   | WGM01 (Waveform Generation Mode) |
 | 2   | WGM00 (Waveform Generation Mode) |
 
-#### **WGM02/WGM01/WGM00 (Waveform Generation Mode)**
+### **WGM02/WGM01/WGM00 (Waveform Generation Mode)**
 
 These bits select the waveform generation mode of the timer. The possible configurations are:
 
@@ -74,13 +74,89 @@ The WGM02 bit is located in the TCCR0B register.
 > [!CAUTION]
 Pay close attention to the Update of OCRx at column. This is crucial for accurate timer operation, and failing to consider it could cause timing issues or unexpected behavior in your application.
 
+---
+### **Mode 0: Normal Mode**
+The timer counts from 0 to 255, and the overflow flag (TOV0) is set when it reaches 255+1.
+```c
+/* Configure Timer0 for Normal Mode (Mode 0) */
+bitClear(TCCR0A, WGM00);
+bitClear(TCCR0A, WGM01);
+bitClear(TCCR0B, WGM02);
+```
+Useful for simple delay or overflow interrupt generation.
 
-### Explanation:
-- **Normal Mode**: The timer counts from 0 to 255, and the overflow flag is set when it reaches 255.
-- **CTC Mode**: The timer resets when it reaches the value in **OCR0A** or **OCR0B**, useful for generating periodic interrupts.
-- **PWM, Phase Correct Mode**: The timer counts up and down, creating a symmetrical PWM waveform.
-- **Fast PWM Mode**: The timer counts from 0 to 255, generating a PWM signal with a variable duty cycle, updated according to **OCR0A**.
+---
+### **Mode 1: PWM, Phase Correct (TOP = 0xFF)**
+The timer counts up to 255 then down to 0, creating a symmetrical PWM waveform.   
+TOV flag set at **BOTTOM**, OCR0x updated at **TOP**.
+```c
+/* Configure Timer0 for PWM, Phase Correct (Mode 1) */
+bitSet(TCCR0A, WGM00);
+bitClear(TCCR0A, WGM01);
+bitClear(TCCR0B, WGM02);
+```
+Suitable for power electronics or motor control where center-aligned PWM is preferred.
 
+---
+### **Mode 2: CTC (Clear Timer on Compare Match)**
+Timer counts up until it matches **OCR0A**, then resets.   
+OCR0A defines the TOP.
+
+```c
+/* Configure Timer0 for CTC Mode (Mode 2) */
+bitClear(TCCR0A, WGM00);
+bitSet(TCCR0A, WGM01);
+bitClear(TCCR0B, WGM02);
+```
+Ideal for precise time base or square wave generation.
+
+---
+### **Mode 3: Fast PWM (TOP = 0xFF)**
+Timer counts from 0 to 255.   
+TOV flag set at **TOP**, OCR0x updated at **BOTTOM**.
+```c
+/* Configure Timer0 for Fast PWM (Mode 3) */
+bitSet(TCCR0A, WGM00);
+bitSet(TCCR0A, WGM01);
+bitClear(TCCR0B, WGM02);
+```
+Used for generating high-frequency PWM signals with less resolution.
+
+---
+### **Mode 4: Reserved**
+> [!CAUTION]
+> This mode is reserved and should not be used.
+
+---
+### **Mode 5: PWM, Phase Correct (TOP = OCR0A)**
+The timer counts up and down, OCR0A is used as TOP.   
+TOV flag set at **BOTTOM**, OCR0x updated at **TOP**.
+```c
+/* Configure Timer0 for Phase Correct PWM (Mode 5) with TOP = OCR0A */
+bitSet(TCCR0A, WGM00);
+bitClear(TCCR0A, WGM01);
+bitSet(TCCR0B, WGM02);
+```
+Provides flexible duty cycle with variable resolution.
+
+---
+### **Mode 6: Reserved**
+> [!CAUTION]
+> This mode is reserved and should not be used.
+
+---
+### **Mode 7: Fast PWM (TOP = OCR0A)**
+Timer counts from 0 to OCR0A.   
+TOV flag set at **TOP**, OCR0x updated at **BOTTOM**.
+```c
+/* Configure Timer0 for Fast PWM (Mode 7) with TOP = OCR0A */
+bitSet(TCCR0A, WGM00);
+bitSet(TCCR0A, WGM01);
+bitSet(TCCR0B, WGM02);
+```
+Used when you need fast PWM with a configurable top value.
+
+---
 > [!TIP]
 The x can be either A or B, depending on whether you are configuring Channel A (OC0A) or Channel B (OC0B).
 
