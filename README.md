@@ -86,7 +86,7 @@ bitClear(TCCR0B, WGM02);
 Useful for simple delay or overflow interrupt generation.
 
 ---
-### **Mode 1: PWM, Phase Correct (TOP = 0xFF)**
+#### **Mode 1: PWM, Phase Correct (TOP = 0xFF)**
 The timer counts up to 255 then down to 0, creating a symmetrical PWM waveform.   
 TOV flag set at **BOTTOM**, OCR0x updated at **TOP**.
 ```c
@@ -98,7 +98,7 @@ bitClear(TCCR0B, WGM02);
 Suitable for power electronics or motor control where center-aligned PWM is preferred.
 
 ---
-### **Mode 2: CTC (Clear Timer on Compare Match)**
+#### **Mode 2: CTC (Clear Timer on Compare Match)**
 Timer counts up until it matches **OCR0A**, then resets.   
 OCR0A defines the TOP.
 
@@ -111,7 +111,7 @@ bitClear(TCCR0B, WGM02);
 Ideal for precise time base or square wave generation.
 
 ---
-### **Mode 3: Fast PWM (TOP = 0xFF)**
+#### **Mode 3: Fast PWM (TOP = 0xFF)**
 Timer counts from 0 to 255.   
 TOV flag set at **TOP**, OCR0x updated at **BOTTOM**.
 ```c
@@ -123,12 +123,12 @@ bitClear(TCCR0B, WGM02);
 Used for generating high-frequency PWM signals with less resolution.
 
 ---
-### **Mode 4: Reserved**
+#### **Mode 4: Reserved**
 > [!CAUTION]
 > This mode is reserved and should not be used.
 
 ---
-### **Mode 5: PWM, Phase Correct (TOP = OCR0A)**
+#### **Mode 5: PWM, Phase Correct (TOP = OCR0A)**
 The timer counts up and down, OCR0A is used as TOP.   
 TOV flag set at **BOTTOM**, OCR0x updated at **TOP**.
 ```c
@@ -140,12 +140,12 @@ bitSet(TCCR0B, WGM02);
 Provides flexible duty cycle with variable resolution.
 
 ---
-### **Mode 6: Reserved**
+#### **Mode 6: Reserved**
 > [!CAUTION]
 > This mode is reserved and should not be used.
 
 ---
-### **Mode 7: Fast PWM (TOP = OCR0A)**
+#### **Mode 7: Fast PWM (TOP = OCR0A)**
 Timer counts from 0 to OCR0A.   
 TOV flag set at **TOP**, OCR0x updated at **BOTTOM**.
 ```c
@@ -160,7 +160,7 @@ Used when you need fast PWM with a configurable top value.
 > [!TIP]
 The x can be either A or B, depending on whether you are configuring Channel A (OC0A) or Channel B (OC0B).
 
-#### **Compare Output Mode, non-PWM Mode**
+### **Compare Output Mode, non-PWM Mode**
 
 | **COM0x1** | **COM0x0** | **Description**                                              |
 |------------|------------|--------------------------------------------------------------|
@@ -169,7 +169,7 @@ The x can be either A or B, depending on whether you are configuring Channel A (
 | 1          | 0          | Clear OCxA on Compare Match.                                 |
 | 1          | 1          | Set OCxA on Compare Match.                                   |
 
-#### **Compare Output Mode, Fast PWM Mode**
+### **Compare Output Mode, Fast PWM Mode**
 
 | **COM0x1** | **COM0x0** | **Description**                                                     |
 |------------|------------|---------------------------------------------------------------------|
@@ -181,7 +181,7 @@ The x can be either A or B, depending on whether you are configuring Channel A (
 > [!NOTE] 
 A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In this case, the compare match is ignored, but the set or clear is done at **BOTTOM**.
 
-#### **Compare Output Mode, Phase Correct PWM Mode**
+### **Compare Output Mode, Phase Correct PWM Mode**
 
 | **COM0x1** | **COM0x0** | **Description**                                                       |
 |------------|------------|-----------------------------------------------------------------------|
@@ -195,7 +195,7 @@ A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In th
 
 ---
 
-### **TCCR0B (Timer/Counter Control Register B)**
+## **TCCR0B (Timer/Counter Control Register B)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -211,7 +211,7 @@ A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In th
 - **FOC0A/FOC0B**: Forces an immediate compare match to occur, which can be used to trigger an interrupt or other event.
 - **WGM02**: Combines with WGM01 and WGM00 from TCCR0A to define the waveform generation mode.
 
-#### **Clock Select Bit Description**
+### **Clock Select Bit Description**
 Determine the clock source for the timer (e.g., No clock, prescaler, etc.).
 
 | **CS02** | **CS01** | **CS00** | **Description**                                           |
@@ -232,7 +232,7 @@ The **External clock source** can be used in two modes for the **Counter Mode**:
 
 ---
 
-### **TIMSK0 (Timer/Counter Interrupt Mask Register)**
+## **TIMSK0 (Timer/Counter Interrupt Mask Register)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -247,7 +247,7 @@ The **External clock source** can be used in two modes for the **Counter Mode**:
 
 ---
 
-### **TIFR0 (Timer/Counter Interrupt Flag Register)**
+## **TIFR0 (Timer/Counter Interrupt Flag Register)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -262,7 +262,7 @@ The **External clock source** can be used in two modes for the **Counter Mode**:
 
 --
 
-### **TCNT0 (Timer/Counter Register)**
+## **TCNT0 (Timer/Counter Register)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -272,7 +272,7 @@ The **External clock source** can be used in two modes for the **Counter Mode**:
 
 ---
 
-### **OCR0A (Output Compare Register A)**
+## **OCR0A (Output Compare Register A)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -282,7 +282,7 @@ The **External clock source** can be used in two modes for the **Counter Mode**:
 
 ---
 
-### **OCR0B (Output Compare Register B)**
+## **OCR0B (Output Compare Register B)**
 
 | Bit | Description |
 | --- | ----------- |
@@ -291,7 +291,7 @@ The **External clock source** can be used in two modes for the **Counter Mode**:
 - **OCR0B**: Holds the value for the output compare match for Channel B. Similar to OCR0A but for Channel B.
 
 
-## **Time Calculation**
+# **Time Calculation**
 
 ### Normal Mode
 
@@ -326,7 +326,7 @@ This table shows the time period for a **Timer/Counter 0** overflow for differen
 
 ---
 
-#### **Time Calculation with TCNT0**
+## **Time Calculation with TCNT0**
 
 If you want to reach different time intervals in Normal mode, you need to initialize the TCNT0 register to the desired value. After setting TCNT0, you can calculate the time for the timer to reach that specific value before overflowing.
 
@@ -386,7 +386,7 @@ ISR(TIMER0_OVF_vect)
 
 ---
 
-### CTC Mode
+## CTC Mode
 
 In **CTC (Clear Timer on Compare Match)** mode, the timer is cleared when it matches the value in the **OCR0A** register. The period for **Timer/Counter 0** in **CTC mode** can be calculated as:
 
@@ -412,7 +412,7 @@ In **CTC mode**, the timer counts from 0 to **OCR0A** before resetting, which is
 > [!TIP]
 In Normal mode, we are typically looking for the Overflow interrupt (OVF). However, in CTC mode, we are looking for the Compare Match interrupt to trigger the event when the timer matches the value in OCR0A.
 
-## API Reference
+# API Reference
 
 This section provides the necessary API functions to interact with Timer/Counter 0. These functions are designed for direct manipulation of the registers.
 
@@ -437,7 +437,7 @@ You can use the following macros to enable and disable global interrupts:
 
 ---
 
-### **Timer0_Init**
+## **Timer0_Init**
 ```c
 void Timer0_Init(bool _initStatus);
 ```
@@ -465,7 +465,7 @@ int main(void)
 
 ---
 
-### **ISR (Interrupt Service Routine) for Timer/Counter 0**
+## **ISR (Interrupt Service Routine) for Timer/Counter 0**
 
 Timer/Counter 0 has several interrupt sources that allow you to trigger actions based on specific events. Below are the interrupts that can be enabled for **Timer/Counter 0**:
 
