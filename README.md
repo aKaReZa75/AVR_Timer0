@@ -75,7 +75,7 @@ The WGM02 bit is located in the TCCR0B register.
 Pay close attention to the Update of OCRx at column. This is crucial for accurate timer operation, and failing to consider it could cause timing issues or unexpected behavior in your application.
 
 ---
-### **Mode 0: Normal Mode**
+#### **Mode 0: Normal Mode**
 The timer counts from 0 to 255, and the overflow flag (TOV0) is set when it reaches 255+1.
 ```c
 /* Configure Timer0 for Normal Mode (Mode 0) */
