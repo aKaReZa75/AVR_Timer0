@@ -281,8 +281,20 @@ bitSet(TCCR0A, COM0B0);
 | 1   | CS01 (Clock Select) |
 | 0   | CS00 (Clock Select) |
 
-- **FOC0A/FOC0B**: Forces an immediate compare match to occur, which can be used to trigger an interrupt or other event.
-- **WGM02**: Combines with WGM01 and WGM00 from TCCR0A to define the waveform generation mode.
+> [!NOTE]
+> **WGM02**: Combines with WGM01 and WGM00 from TCCR0A to define the waveform generation mode.
+
+---
+### **FOC0A / FOC0B (Force Output Compare)**
+Force an immediate Compare Match on channel A or B, only used in **non-PWM modes**. Useful when you want to trigger an output compare action via software.
+
+```c
+/* Force Compare Match on Channel A */
+bitSet(TCCR0B, FOC0A);
+
+/* Force Compare Match on Channel B */
+bitSet(TCCR0B, FOC0B);
+```
 
 ### **Clock Select Bit Description**
 Determine the clock source for the timer (e.g., No clock, prescaler, etc.).
@@ -299,12 +311,87 @@ Determine the clock source for the timer (e.g., No clock, prescaler, etc.).
 | 1        | 1        | 1        | External clock source on T0 pin. Clock on rising edge.   |
 
 > [!TIP]
-The **External clock source** can be used in two modes for the **Counter Mode**:  
-- Clock on falling edge
-- Clock on rising edge
+> Use external clocking when Timer0 acts as a **counter** to count external events.
+> Rising or falling edge options allow flexibility in signal synchronization.
+
+#### **No clock source**
+```c
+/* Stop Timer (No clock source) */
+bitClear(TCCR0B, CS00);
+bitClear(TCCR0B, CS01);
+bitClear(TCCR0B, CS02);
+```
+* Timer completely off
+* Useful for disabling the timer or saving power
+  
+---
+#### **Prescaler = 1**
+```c
+/* Set Prescaler = 1 => Timer clock frequency = 16MHz/1 = 16MHz */
+bitSet(TCCR0B, CS00);
+bitClear(TCCR0B, CS01);
+bitClear(TCCR0B, CS02);
+```
 
 ---
+#### **Prescaler = 8**
+```c
+/* Set Prescaler = 8 => Timer clock frequency = 16MHz/8 = 2MHz */
+bitClear(TCCR0B, CS00);
+bitSet(TCCR0B, CS01);
+bitClear(TCCR0B, CS02);
+```
 
+---
+#### **Prescaler = 64**
+```c
+/* Set Prescaler = 64 => Timer clock frequency = 16MHz/64 = 256KHz */
+bitSet(TCCR0B, CS00);
+bitSet(TCCR0B, CS01);
+bitClear(TCCR0B, CS02);
+```
+
+---
+#### **Prescaler = 256**
+```c
+/* Set Prescaler = 256 => Timer clock frequency = 16MHz/256 = 256KHz */
+bitClear(TCCR0B, CS00);
+bitClear(TCCR0B, CS01);
+bitSet(TCCR0B, CS02);
+```
+
+---
+#### **Prescaler = 1024**
+```c
+/* 7. External Clock on Falling Edge (from T0 pin) */
+bitClear(TCCR0B, CS00);
+bitSet(TCCR0B, CS01);
+bitSet(TCCR0B, CS02);
+```
+
+---
+#### **Prescaler = 1024**
+```c
+/* 8. External Clock on Rising Edge (from T0 pin) */
+bitSet(TCCR0B, CS00);
+bitSet(TCCR0B, CS01);
+bitSet(TCCR0B, CS02);
+```
+
+---
+### Force Compare Match (FOC0A / FOC0B)
+* Only works in **non-PWM** mode (e.g., CTC, Normal mode)
+* Manually trigger output compare action
+* Useful for testing or immediate interrupt trigger
+
+```c
+/* Force a Compare Match on OC0A */
+bitSet(TCCR0B, FOC0A);
+
+/* Force a Compare Match on OC0B */
+bitSet(TCCR0B, FOC0B);
+```
+  
 ## **TIMSK0 (Timer/Counter Interrupt Mask Register)**
 
 | Bit | Description |
