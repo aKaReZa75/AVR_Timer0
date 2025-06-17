@@ -194,7 +194,7 @@ A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In th
 A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In this case, the compare match is ignored, but the set or clear is done at **TOP**.
 
 ---
-### Compare Output Mode — Normal Operation
+#### Compare Output Mode — Normal Operation
 * Timer used for internal timing only (no waveform on output pins)
 * Suitable for `Normal Mode`, `CTC`, or `PWM` when no output pin is needed
 ```c
@@ -208,7 +208,7 @@ bitClear(TCCR0A, COM0B0);
 ```
 
 ---
-### Compare Output Mode — Toggle
+#### Compare Output Mode — Toggle
 * Generate square waves for frequency testing or simple waveform generation
 * Works in `CTC` mode
 * In `Fast PWM` or `Phase Correct PWM`, only works when `WGM02 = 1` (toggle on match with OCRx)
@@ -222,10 +222,8 @@ bitClear(TCCR0A, COM0B1);
 bitSet(TCCR0A, COM0B0);
 ```
 
-
 ---
-
-### Compare Output Mode — Non-Inverting
+#### Compare Output Mode — Non-Inverting
 * Standard PWM signal generation
 * Output is HIGH at BOTTOM, LOW when TCNT0 = OCR0x
 * Used to drive motors, LEDs, or other analog devices using PWM
@@ -241,7 +239,7 @@ bitClear(TCCR0A, COM0B0);
 ```
 
 ---
-### Compare Output Mode — Inverting
+#### Compare Output Mode — Inverting
 * Inverted PWM generation
 * Output is LOW at BOTTOM, HIGH when TCNT0 = OCR0x
 * Used when complementary waveforms are needed (e.g., H-bridge drivers, special dimming effects)
@@ -511,7 +509,7 @@ intFlag_clear(TIFR0, OCF0B);
 
 # **Time Calculation**
 
-### Normal Mode
+## Normal Mode
 
 The time period for **Timer/Counter 0** to overflow or for a compare match can be calculated as:
 
@@ -524,7 +522,7 @@ Where:
 - `256` is the maximum value the timer can count to before overflowing (in **Normal mode**).
 - `f_clk` is the system clock frequency.
 
-#### **Example Calculation for Time**
+### **Example Calculation for Time**
 
 For a **16 MHz** clock and a **prescaler of 64**, the time period for a **Timer/Counter 0** overflow would be:
 
@@ -617,7 +615,7 @@ Where:
 - `N` is the prescaler value.
 - `f_clk` is the system clock frequency.
 
-#### **Example Calculation for Time in CTC Mode**
+### **Example Calculation for Time in CTC Mode**
 
 For a **16 MHz** clock, a **prescaler of 64**, and **OCR0A = 249**, the time period would be:
 
