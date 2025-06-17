@@ -194,6 +194,79 @@ A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In th
 A special case occurs when **OCR0x** equals **TOP** and **COM0x1** is set. In this case, the compare match is ignored, but the set or clear is done at **TOP**.
 
 ---
+### Compare Output Mode — Normal Operation
+
+```c
+/* Normal Operation (OC0A disconnected) */
+bitClear(TCCR0A, COM0A1);
+bitClear(TCCR0A, COM0A0);
+
+/* Normal Operation (OC0B disconnected) */
+bitClear(TCCR0A, COM0B1);
+bitClear(TCCR0A, COM0B0);
+```
+**Use Case**:
+
+* Timer used for internal timing only (no waveform on output pins)
+* Suitable for `Normal Mode`, `CTC`, or `PWM` when no output pin is needed
+
+---
+### Compare Output Mode — Toggle
+```c
+/* Toggle OC0A on Compare Match */
+bitClear(TCCR0A, COM0A1);
+bitSet(TCCR0A, COM0A0);
+
+/* Toggle OC0B on Compare Match */
+bitClear(TCCR0A, COM0B1);
+bitSet(TCCR0A, COM0B0);
+```
+
+**Use Case**:
+
+* Generate square waves for frequency testing or simple waveform generation
+* Works in `CTC` mode
+* In `Fast PWM` or `Phase Correct PWM`, only works when `WGM02 = 1` (toggle on match with OCRx)
+
+---
+
+### Compare Output Mode — Non-Inverting
+```c
+/* Non-Inverting PWM Output (Clear OC0A on Compare Match) */
+bitSet(TCCR0A, COM0A1);
+bitClear(TCCR0A, COM0A0);
+
+/* Non-Inverting PWM Output (Clear OC0B on Compare Match) */
+bitSet(TCCR0A, COM0B1);
+bitClear(TCCR0A, COM0B0);
+```
+
+**Use Case**:
+
+* Standard PWM signal generation
+* Output is HIGH at BOTTOM, LOW when TCNT0 = OCR0x
+* Used to drive motors, LEDs, or other analog devices using PWM
+* Very common for controlling power (e.g., speed, brightness)
+
+---
+### Compare Output Mode — Inverting
+```c
+/* Inverting PWM Output (Set OC0A on Compare Match) */
+bitSet(TCCR0A, COM0A1);
+bitSet(TCCR0A, COM0A0);
+
+/* Inverting PWM Output (Set OC0B on Compare Match) */
+bitSet(TCCR0A, COM0B1);
+bitSet(TCCR0A, COM0B0);
+```
+
+**Use Case**:
+
+* Inverted PWM generation
+* Output is LOW at BOTTOM, HIGH when TCNT0 = OCR0x
+* Used when complementary waveforms are needed (e.g., H-bridge drivers, special dimming effects)
+
+---
 
 ## **TCCR0B (Timer/Counter Control Register B)**
 
