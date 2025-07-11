@@ -120,9 +120,6 @@ bitSet(TCCR0B, WGM02);
 Used when you need fast PWM with a configurable top value.
 
 ---
-> [!TIP]
-The x can be either A or B, depending on whether you are configuring Channel A (OC0A) or Channel B (OC0B).
-
 
 # 🌟 Support Me
 If you found this repository useful:
