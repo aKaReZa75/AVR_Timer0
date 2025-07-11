@@ -37,10 +37,6 @@ Timer/Counter 0 is one of the timers integrated into the ATmega328 microcontroll
 # 🔗 Resources
   Here you'll find a collection of useful links and videos related to the topic of AVR microcontrollers.  
   
-> [!TIP]
-> The resources are detailed in the sections below.  
-> To access any of them, simply click on the corresponding blue link.
-
 ```
 TIMER0 Overview
 ├── Documentation
@@ -86,6 +82,10 @@ TIMER0 Overview
     ├─ [TIMSK0]  — Interrupt Mask Register — Enable Timer0 interrupts
     └─ [TIFR0]   — Interrupt Flag Register — Indicates interrupt events
 ```
+
+> [!TIP]
+> The resources are detailed in the sections below.  
+> To access any of them, simply click on the corresponding blue link.
 
 - [TIMER0 Modes](./TIMER0_Modes.md)
   --- 
