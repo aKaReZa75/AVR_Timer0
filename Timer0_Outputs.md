@@ -1,5 +1,10 @@
   This document explains Compare Output Modes and how they affect the OC0A and OC0B pins in different timer modes, with practical configuration examples for normal, inverting, and non-inverting outputs.
 
+---
+> [!TIP]
+The x can be either A or B, depending on whether you are configuring Channel A (OC0A) or Channel B (OC0B).
+
+
 ### **Compare Output Mode, non-PWM Mode**
 
 | **COM0x1** | **COM0x0** | **Description**                                              |
