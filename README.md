@@ -41,10 +41,6 @@ Timer/Counter 0 is one of the timers integrated into the ATmega328 microcontroll
 > The resources are detailed in the sections below.  
 > To access any of them, simply click on the corresponding blue link.
 
-- [AVR Microntroller](https://github.com/aKaReZa75/AVR)
-  ---  
-    This repository contains comprehensive resources for AVR microcontrollers, including hardware schematics, software libraries, and educational projects.
-
 ```
 TIMER0 Overview
 ├── Documentation
@@ -195,6 +191,10 @@ AVR, Timer and PWM
   </tr>
   
 </table>
+
+- [AVR Microntroller](https://github.com/aKaReZa75/AVR)
+  ---  
+    This repository contains comprehensive resources for AVR microcontrollers, including hardware schematics, software libraries, and educational projects.
 
 
 # 💻 How to Use Git and GitHub
