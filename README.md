@@ -723,6 +723,26 @@ OCR0A = 24;  /* Generates approximately 10 kHz */
 # 🔗 Resources
   Here you'll find a collection of useful links and videos related to the topic of AVR microcontrollers.  
 
+```plaintext
+AVR, Timer and PWM
+   ├── [aKaReZa 59 - AVR, Timer, Accurate Time - Mode 1]
+   │   ├─ Timer0 — Normal and CTC modes overview.
+   │   ├─ Interrupts — Overflow vs Compare Match.
+   │   ├─ Precision — Execution time and interval measurement.
+   │   └─ Display — 7-segment usage + digit splitting method.
+   │
+   ├── [aKaReZa 105 - AVR, Timer, PWM - Mode 2]
+   │   ├─ PWM Modes — Fast and Phase Correct (TOP variations).
+   │   ├─ Comparison — OCR updates and waveform structure.
+   │   ├─ Dual Slope — Signal symmetry and advantages.
+   │   └─ Dead Time — Use cases in motor and power control.
+   │
+   └── [aKaReZa 108 - AVR, Servo Motor]
+       ├─ Servo PWM — 50Hz signal generation and tuning.
+       ├─ Timer1 — Mode 14 (Fast PWM) and Mode 10 (Phase Correct).
+       └─ Precision — Angle control and signal comparisons.
+```
+
 <table style="border-collapse: collapse;">
   <tr>
     <td valign="top" style="padding: 0 10px;">
@@ -741,6 +761,43 @@ OCR0A = 24;  /* Generates approximately 10 kHz */
       </a>
     </td>
   </tr>
+
+  <tr>
+    <td valign="top" style="padding: 0 10px;">
+      <h3 style="margin: 0;">
+        <a href="https://youtu.be/1GhoYor4q6M">aKaReZa 105 – AVR, Timer, PWM - Mode 2</a>
+      </h3>
+      <p style="margin: 8px 0 0;">
+        A deep dive into PWM modes in AVR microcontrollers, covering Fast and Phase Correct PWM, dual slope advantages, Dead Time, and real-world applications in motors, converters, and LED drivers. Ideal for mastering PWM in practical engineering contexts.
+      </p>
+    </td>
+    <td width="360" valign="top">
+      <a href="https://youtu.be/1GhoYor4q6M">
+        <img src="https://img.youtube.com/vi/1GhoYor4q6M/maxresdefault.jpg"
+             width="360"
+             alt="aKaReZa 105 – AVR, Timer, PWM - Mode 2 Thumbnail"/>
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top" style="padding: 0 10px;">
+      <h3 style="margin: 0;">
+        <a href="https://youtu.be/_RbzWU-bHc4">aKaReZa 108 – AVR, Servo Motor</a>
+      </h3>
+      <p style="margin: 8px 0 0;">
+        Learn how to control a servo motor using AVR timers by generating precise 50Hz PWM signals. This video covers Timer0 basics, advanced Timer1 modes (Mode 14 and Mode 10), and high-precision angle control—perfect for mastering servo control in embedded systems.
+      </p>
+    </td>
+    <td width="360" valign="top">
+      <a href="https://youtu.be/_RbzWU-bHc4">
+        <img src="https://img.youtube.com/vi/_RbzWU-bHc4/maxresdefault.jpg"
+             width="360"
+             alt="aKaReZa 108 – AVR, Servo Motor Thumbnail"/>
+      </a>
+    </td>
+  </tr>
+  
 </table>
   
 > [!TIP]
