@@ -115,6 +115,7 @@ TIMER0 Overview
   --- 
   This file shows how to calculate the output PWM frequency for Timer0 in both Fast PWM and Phase Correct PWM modes, using OCR0A as TOP and different prescaler settings.
 
+## **Videos Overview**
 ```plaintext
 AVR, Timer and PWM
    ├── [aKaReZa 59 - AVR, Timer, Accurate Time - Mode 1]
