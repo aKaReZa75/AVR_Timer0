@@ -67,7 +67,7 @@ TIMER0 Overview
 │   │
 │   ├─ [TIMER0 Time Calculation]
 │   │   ├─ Inputs — TCNT0, OCR0A, prescaler
-│       └─ Output — Overflow and match intervals
+│   |   └─ Output — Overflow and match intervals
 │   │
 │   └─ [TIMER0 PWM Calculation]
 │       ├─ Modes — Fast PWM, Phase Correct
